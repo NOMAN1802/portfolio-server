@@ -6,11 +6,13 @@ import { multerUpload } from "../../config/multer.config";
 import validateImageFileRequest from "../../middlewares/validateImageFileRequest";
 import { ImageFilesArrayZodSchema } from "../../zod/image.validation";
 import { parseBody } from "../../middlewares/bodyParser";
+import auth from "../../middlewares/auth";
+import { USER_ROLE } from "../User/user.constant";
 
 const router = express.Router();
 
 router.post(
-  "/create-post",multerUpload.fields([{ name: 'postImages' }]),
+  "/create-post",auth(USER_ROLE.admin),multerUpload.fields([{ name: 'postImages' }]),
   validateImageFileRequest(ImageFilesArrayZodSchema),
   parseBody,
   validateRequest(postValidations.createPostSchema),
@@ -18,7 +20,7 @@ router.post(
 );
 
 router.patch(
-  "/update-post/:id",multerUpload.fields([{ name: 'postImages' }]),
+  "/update-post/:id",auth(USER_ROLE.admin),multerUpload.fields([{name :'postImages'}]),
   validateImageFileRequest(ImageFilesArrayZodSchema),
   parseBody,
   validateRequest(postValidations.updatePostSchema),

@@ -14,8 +14,14 @@ const { postImages } = images;
 
 const updatePost = async (
   id: string,
-  postData: Partial<IPost>
-): Promise<IPost | null> => {
+  postData: Partial<IPost>,
+  images?: TImageFiles 
+): Promise<IPost| null> => {
+  
+  if (images && images.postImages) {
+      postData.images = images.postImages.map((image) => image.path.trim());
+  }
+
   const result = await Post.findByIdAndUpdate(
     id,
     { $set: postData },
