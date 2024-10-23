@@ -10,12 +10,13 @@ const PostSchema: Schema = new Schema<IPost>(
       type: [String],
       default: [],
     },
+    resourceLink: { type: String },
    
   },
   { timestamps: true }
 );
 
-// Middleware to increment upvote count in associated user
+
 
 
 export const Post = mongoose.model<IPost & Document>("Post", PostSchema);

@@ -1,6 +1,5 @@
 import { Post } from "./post.model";
-import { IPost, IComment } from "./post.interface";
-import { Types } from "mongoose";
+import { IPost } from "./post.interface";
 import { QueryBuilder } from "../../builder/QueryBuilder";
 import { TImageFiles } from "../../interfaces/image.interface";
 
@@ -32,11 +31,6 @@ const deletePost = async (id: string): Promise<boolean> => {
 
 const getPost = async (id: string): Promise<IPost | null> => {
   const result = await Post.findById(id)
-    .populate("author")
-    .populate({
-      path: "comments.commentator",
-      select: "name"
-    });
   return result;
 };
 
@@ -44,9 +38,7 @@ const getPost = async (id: string): Promise<IPost | null> => {
 const getPosts = async (
   query: Record<string, unknown>
 ): Promise<{ posts: IPost[]; total: number; page: number; limit: number }> => {
-  const searchableFields = ["title", "postDetails","category"];
-  const postQuery = new QueryBuilder(Post.find().populate("author"), query)
-    .search(searchableFields)
+  const postQuery = new QueryBuilder(Post.find(), query)
     .filter()
     .sort()
     .paginate()

@@ -6,6 +6,7 @@ const createPostSchema = z.object({
     postDetails: z.string().min(1),
     category: z.enum(["Frontend", "Databas", "Backend"]), 
     image: z.string().optional(),
+    resourceLink: z.string().optional(),
      
   }),
 });
@@ -16,6 +17,7 @@ const updatePostSchema = z.object({
     postDetails: z.string().min(1).optional(),
     category: z.enum(["Frontend", "Databas", "Backend"]).optional(),
     images: z.array(z.string()).optional(),
+    resourceLink: z.string().optional(),
   }),
 });
 
