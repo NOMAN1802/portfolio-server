@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+// your file code here
+
 import { ErrorRequestHandler, NextFunction,Request, Response } from 'express';
 import { ZodError } from 'zod';
 import config from '../config';

@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs';
 import httpStatus from 'http-status';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../../config';
@@ -97,7 +96,7 @@ const refreshToken = async (token: string) => {
     config.jwt_refresh_secret as string
   ) as JwtPayload;
 
-  const { email, iat } = decoded;
+  const { email } = decoded;
 
   // checking if the user is exist
   const user = await User.isUserExistsByEmail(email);

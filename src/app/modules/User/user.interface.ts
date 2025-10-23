@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Model, Schema } from 'mongoose';
+import { Model} from 'mongoose';
 
 export type TUser = {
   _id?: string;
