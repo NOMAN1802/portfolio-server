@@ -8,6 +8,8 @@ import { USER_ROLE } from '../modules/User/user.constant';
 import { verifyToken } from '../utils/verifyJWT';
 import { User } from '../modules/User/user.model';
 
+
+// lint error solve
 const auth = (...requiredRoles: (keyof typeof USER_ROLE)[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
